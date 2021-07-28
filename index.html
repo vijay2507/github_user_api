@@ -71,19 +71,16 @@
                 
                 success: function (data) {
 
-                    var img = '<img src="" alt="">';
-                    var follower = '<a href=""></a>';
-                    // var following = '<a href=""></a>';
-
-                    if (data == '' && data != null) {
-                        console.log('data undefined')
-                    }
-                    console.log('its working');
-                    // data ='';
-                    $.each(data, function (key, value) {
+                    if (data != '' && data != null) {
+                        $.each(data, function (key, value) {
                         $(".load-data .row").append('<div class="col-md-3 my-4"> <div class="cards"><img src="' + value.avatar_url + '" alt="">' + "<br>" + '<p>'+value.login+'</P>' + '<button><a href="'+value.followers_url+'">Follower</a></button>' + '<button><a href="'+value.following_url+'">Following</a></button>' +'<button><a href="'+value.events_url+'">Event</a></button></div></div>'+ " <br> ");
 
                     });
+                    }
+                   else{
+                       alert("Data not found");
+                   }
+                   
 
                 }
             });
