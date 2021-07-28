@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>print api</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            color: white;
+            text-transform: capitalize;
+        
+        }
+      
+        img{
+            padding-left: 15px;
+            margin-top: 10px;
+            width: 300px;
+            height: 300px;
+        }
+        p{
+            text-align: center;
+            width: 300px;
+            font-weight: 800;
+            font-size: 25px;
+        }
+       button{
+           margin-left: 9px;
+           margin-right: 20px;
+           background-color: white;
+           font-weight: 700;
+           border-radius: 7px;
+           margin-bottom: 10px;
+          
+       }
+       a{
+           color: black;
+           text-decoration: none;
+       }
+       .cards{
+            background-color: #4c4a47;
+            border: 1px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="load-data ">
+            <div class="row"></div>
+        </div>
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://api.github.com/users?since=XXX",
+                type: "GET",
+                
+                success: function (data) {
+
+                    var img = '<img src="" alt="">';
+                    var follower = '<a href=""></a>';
+                    // var following = '<a href=""></a>';
+
+                    if (data == '' && data != null) {
+                        console.log('data undefined')
+                    }
+                    console.log('its working');
+                    // data ='';
+                    $.each(data, function (key, value) {
+                        $(".load-data .row").append('<div class="col-md-3 my-4"> <div class="cards"><img src="' + value.avatar_url + '" alt="">' + "<br>" + '<p>'+value.login+'</P>' + '<button><a href="'+value.followers_url+'">Follower</a></button>' + '<button><a href="'+value.following_url+'">Following</a></button>' +'<button><a href="'+value.events_url+'">Event</a></button></div></div>'+ " <br> ");
+
+                    });
+
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>
